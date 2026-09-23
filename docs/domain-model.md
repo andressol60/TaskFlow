@@ -84,3 +84,7 @@ BR-04
 A user may have multiple assigned tasks.
 BR-05
 A task status must be one of the allowed statuses.
+BR-06
+A project must have a name.
+BR-07
+A task must have a title.

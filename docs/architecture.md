@@ -1,62 +1,47 @@
-# Architecture
+# TaskFlow Architecture
+
+## Architecture Style
 
 TaskFlow follows Clean Architecture principles.
 
-## Layers
+---
 
-### Presentation
+## Projects
 
-Responsible for HTTP communication.
+### TaskFlow.Api
 
-Example:
-- Controllers
-- Endpoints
+Responsible for exposing HTTP endpoints.
+
+### TaskFlow.Application
+
+Responsible for use cases and application logic.
+
+### TaskFlow.Domain
+
+Responsible for business rules and domain entities.
+
+### TaskFlow.Infrastructure
+
+Responsible for external service implementations.
+
+### TaskFlow.Persistence
+
+Responsible for database access using Entity Framework Core.
 
 ---
 
-### Application
+## Dependency Rules
 
-Contains use cases and application logic.
-
-Example:
-- Commands
-- Queries
-- Handlers
-
----
-
-### Domain
-
-Contains business rules and entities.
-
-Example:
-- User
-- Project
-- Task
-
----
-
-### Infrastructure
-
-Contains external implementations.
-
-Example:
-- Entity Framework Core
-- SQL Server
-- Repositories
-
----
-
-# Dependency Rule
-
-Dependencies always point inward.
-
-Presentation
+TaskFlow.Api
     ↓
-Application
+TaskFlow.Application
     ↓
-Domain
+TaskFlow.Domain
 
-Infrastructure
+TaskFlow.Infrastructure
     ↓
-Domain
+TaskFlow.Domain
+
+TaskFlow.Persistence
+    ↓
+TaskFlow
