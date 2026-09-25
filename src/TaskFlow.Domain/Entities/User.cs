@@ -1,5 +1,7 @@
 namespace TaskFlow.Domain.Entities;
 
+using TaskFlow.Domain.Exceptions;
+
 public class User
 {
     public Guid Id { get; private set; }
@@ -10,6 +12,11 @@ public class User
     //invariante
     public User(Guid id, string name, string lastName, string email)
     {
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new DomainException("Name cannot be empty");
+        }
+
         Id = id;
         Name = name;
         LastName = lastName;
