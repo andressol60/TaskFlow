@@ -9,12 +9,22 @@ public class User
     public string LastName { get; private set; }
     public string Email { get; private set; }
 
-    //invariante
+    //invariante = regla que siempre ddebe cumplirse ejem: name no puede estar vacio...
     public User(Guid id, string name, string lastName, string email)
     {
-        if (string.IsNullOrEmpty(name))
+        if (string.IsNullOrWhiteSpace(name))
         {
             throw new DomainException("Name cannot be empty");
+        }
+
+        if (string.IsNullOrWhiteSpace(lastName))
+        {
+            throw new DomainException("Last Name cannot be empty");
+        }
+
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            throw new DomainException("Email cannot be empty");
         }
 
         Id = id;
