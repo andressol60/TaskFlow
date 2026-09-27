@@ -1,16 +1,17 @@
 namespace TaskFlow.Domain.Entities;
 
 using TaskFlow.Domain.Exceptions;
+using TaskFlow.Domain.ValueObjects;
 
 public class User
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string LastName { get; private set; }
-    public string Email { get; private set; }
+    public Email Email { get; private set; }
 
     //invariante = regla que siempre ddebe cumplirse ejem: name no puede estar vacio...
-    public User(Guid id, string name, string lastName, string email)
+    public User(Guid id, string name, string lastName, Email email)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -22,10 +23,6 @@ public class User
             throw new DomainException("Last Name cannot be empty");
         }
 
-        if (string.IsNullOrWhiteSpace(email))
-        {
-            throw new DomainException("Email cannot be empty");
-        }
 
         Id = id;
         Name = name;
